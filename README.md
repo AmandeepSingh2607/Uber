@@ -94,5 +94,54 @@ Login a register user with the provided details.
     }
 }
 ````
+### Get User Profile
 
- 
+#### Description
+
+Retrieve the profile of the authenticated user.
+
+#### Endpoint
+
+`GET /user/profile`
+
+#### Request Headers
+
+* `Authorization`: The JSON Web Token (JWT) obtained during login (required)
+
+## Request Example
+
+```bash
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg4ZGNmNDliZWFkOTY4ZWEzYWRmNjYiLCJpYXQiOjE3MzcwOTIxOTd9.DaC6iRZJGTuTQgV6bwn9uBP5JWPgruA42EoJk_WkE6w
+````
+#### Response Body
+````json
+ {
+  "_id": "6788dcf49bead968ea3adf66",
+  "firstname": "username",
+  "email": "user@gmail.com",
+  "__v": 0
+}
+````
+
+
+### Logout User
+
+#### Description
+
+Logout the authenticated user.
+
+#### Endpoint
+
+`GET /user/logout`
+
+#### Request Headers
+
+* `Authorization`: The JSON Web Token (JWT) obtained during login (required)
+* `Token`: user already login on the /user/login page and they have own token
+
+## Request Example
+
+````
+{
+  "message": "logout successfully"
+}
