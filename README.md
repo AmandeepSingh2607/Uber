@@ -145,3 +145,78 @@ Logout the authenticated user.
 {
   "message": "logout successfully"
 }
+````
+
+# Captain Registration API
+
+## POST /captain/register
+
+Registers a new captain.
+
+### Request Body
+
+* `firstname`: The first name of the captain. (string, required)
+* `email`: The email address of the captain. (string, required)
+* `password`: The password for the captain's account. (string, required)
+* `vehicle`: An object containing information about the captain's vehicle.
+	+ `color`: The color of the vehicle. (string, required)
+	+ `plate`: The license plate number of the vehicle. (string, required)
+	+ `capacity`: The capacity of the vehicle (e.g., number of passengers). (number, required)
+	+ `vehicleType`: The type of vehicle (e.g., car, bus, truck). (string, required)
+
+### Request Headers
+
+* `Content-Type`: `application/json`
+
+### Response
+
+* `token`: A JSON Web Token (JWT) for authentication. (string)
+* `captain`: An object containing the newly created captain's information.
+	+ `_id`: The ID of the captain. (string)
+	+ `firstname`: The first name of the captain. (string)
+	+ `email`: The email address of the captain. (string)
+	+ `vehicle`: An object containing information about the captain's vehicle.
+		- `color`: The color of the vehicle. (string)
+		- `plate`: The license plate number of the vehicle. (string)
+		- `capacity`: The capacity of the vehicle (e.g., number of passengers). (number)
+		- `vehicleType`: The type of vehicle (e.g., car, bus, truck). (string)
+	+ `createdAt`: The date and time the captain was created. (string)
+	+ `updatedAt`: The date and time the captain was last updated. (string)
+	+ `__v`: The version number of the captain document. (number)
+
+### Example Request
+
+```json
+{
+    "firstname": "John Doe",
+    "email": "johndoe@example.com",
+    "password": "password123",
+    "vehicle": {
+        "color": "red",
+        "plate": "RJ XX 1222",
+        "capacity": 3,
+        "vehicleType": "car"
+    }
+}
+
+```
+### Example Response
+````json
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "captain": {
+        "_id": "64f1a2b3c4b5d6e7f8g9h0i1",
+        "firstname": "John Doe",
+        "email": "johndoe@example.com",
+        "vehicle": {
+            "color": "red",
+            "plate": "RJ XX 1222",
+            "capacity": 3,
+            "vehicleType": "car"
+        },
+        "createdAt": "2023-10-01T12:34:56.789Z",
+        "updatedAt": "2023-10-01T12:34:56.789Z",
+        "__v": 0
+    }
+}
+````
