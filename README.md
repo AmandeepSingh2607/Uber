@@ -220,3 +220,90 @@ Registers a new captain.
     }
 }
 ````
+
+## POST /captain/login
+
+### Description
+
+Logs in an existing captain account.
+
+### Request Body
+
+* `email`: The captain's email address.
+* `password`: The captain's password.
+
+### Response
+
+* `token`: The JWT token for the logged-in captain account.
+* `captain`: The logged-in captain object.
+
+### Status Codes
+
+* 200 OK: The captain account was logged in successfully.
+* 400 Bad Request: The request body is invalid or the captain account does not exist.
+* 404 Not Found: The captain account does not exist.
+
+
+### Example Request
+```json
+{
+     "email": "johndoe@example2.com",
+    "password": "password123"
+}
+```
+### Example Response
+```json
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhmM2IzNWU3MTk1NmQ1MWNjYjVlMzgiLCJpYXQiOjE3Mzc0NDQyNzQsImV4cCI6MTczNzUzMDY3NH0.n-MowfogV-OIRAm9JzUYqvCVEMjod7q5yqFED6R83Lg",
+    "captain": {
+        "vehicle": {
+            "color": "red",
+            "plate": "RJ XX 1222",
+            "capacity": 3,
+            "vehicleType": "car"
+        },
+        "_id": "678f3b35e71956d51ccb5e38",
+        "firstname": "John Doe",
+        "email": "johndoe@example2.com",
+        "password": "$2b$10$Y31fp8kQPWPBSXraIecc/eGT1Yr/DzrfeNdUi9qi0qKwCDCOGh40W",
+        "status": "inactive",
+        "__v": 0
+    }
+```
+
+## GET /captain/profile
+
+### Description
+
+Retrieves the logged-in captain's profile.
+
+### Request Headers
+
+* `Authorization`: The JWT token for the logged-in captain account.
+
+### Response
+
+* `captain`: The logged-in captain object.
+
+### Status Codes
+
+* 200 OK: The captain's profile was retrieved successfully.
+
+## POST /captain/logout
+
+### Description
+
+Logs out the logged-in captain account.
+
+### Request Headers
+
+* `Authorization`: The JWT token for the logged-in captain account.
+
+### Response
+
+* `message`: A success message indicating that the captain account was logged out.
+
+### Status Codes
+
+* 200 OK: The captain account was logged out successfully.
+* 401 Unauthorized: The JWT token is invalid or missing.
